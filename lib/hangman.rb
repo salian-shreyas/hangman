@@ -9,5 +9,23 @@ def random_puzzle_word
   file_lines.sample
 end
 
+def get_player_input
+  puts "Please enter an alphabet:"
+  input = gets.chomp.upcase
+  validate_and_return input
+end
+
+def validate_and_return(input)
+  return get_player_input unless an_alphabet?(input)
+  return input
+end
+
+def an_alphabet?(input)
+  input.length == 1 && input.between?("A", "Z")
+end
+
 puzzle_word = random_puzzle_word
 p puzzle_word
+
+player_input = get_player_input
+p player_input

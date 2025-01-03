@@ -1,8 +1,5 @@
 require_relative "hangman/player"
 require_relative "hangman/puzzle"
+require_relative "hangman/game"
 
-puzzle = Puzzle.new
-player = Player.new
-
-p puzzle.new_puzzle
-p player.new_guess
+Game.new.play

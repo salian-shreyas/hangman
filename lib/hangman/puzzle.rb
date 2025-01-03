@@ -6,7 +6,7 @@ class Puzzle
   end
 
   def new_puzzle
-    self.puzzle = random_puzzle_word 
+    self.puzzle = random_puzzle_word.upcase 
   end
 
   private

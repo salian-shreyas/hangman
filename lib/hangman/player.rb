@@ -8,6 +8,7 @@ class Player
   def new_guess
     input = get_input
     self.guesses << validate_input(input)
+    self.guesses.last
   end
 
   private
@@ -18,7 +19,7 @@ class Player
   end
 
   def validate_input(input)
-    return get_player_input unless an_alphabet?(input)
+    return new_guess unless an_alphabet?(input)
     return input
   end
 

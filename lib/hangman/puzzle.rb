@@ -1,12 +1,12 @@
 class Puzzle
-  attr_reader :puzzle
+  attr_reader :puzzle_word
 
   def initialize
-    @puzzle = nil
+    @puzzle_word = nil
   end
 
   def new_puzzle
-    self.puzzle = random_puzzle_word.upcase 
+    self.puzzle_word = random_puzzle_word.upcase 
   end
 
   private
@@ -22,5 +22,5 @@ class Puzzle
     file_lines.sample
   end
 
-  attr_writer :puzzle
+  attr_writer :puzzle_word
 end

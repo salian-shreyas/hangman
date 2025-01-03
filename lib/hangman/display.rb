@@ -3,9 +3,9 @@ module Display
     puts "\nAttempts left: #{attempts}"
   end
 
-  def self.correct_guess(correct_guess, puzzle)
+  def self.correct_guess(correct_guess, puzzle_word)
     print "\n"
-    puzzle.split("").each do |char|
+    puzzle_word.split("").each do |char|
       if correct_guess.include?(char)
         print " " << char << " "
       else
@@ -24,5 +24,14 @@ module Display
     self.correct_guess(correct_guess, puzzle)
     self.incorrect_guess(incorrect_guess)
     self.attempts_left(attempts)
+  end
+
+  def self.won
+    puts "Player won!!"
+  end
+
+  def self.lost(puzzle_word)
+    puts "Game over!!"
+    puts "Puzzle word: #{puzzle_word}"
   end
 end

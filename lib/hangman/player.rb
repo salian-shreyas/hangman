@@ -15,11 +15,15 @@ class Player
 
   def get_input
     puts "Please enter an alphabet:"
-    gets.chomp.upcase
+    gets.strip.upcase
   end
 
   def validate_input(input)
     return new_guess unless an_alphabet?(input)
+    if repeated?(input)
+      puts "Repeated alphabet: #{input}"
+      return new_guess
+    end
     return input
   end
 
@@ -27,5 +31,7 @@ class Player
     input.length == 1 && input.between?("A", "Z")
   end
 
-  attr_writer :guesser
+  def repeated?(input)
+    self.guesses.include? input
+  end
 end

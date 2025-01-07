@@ -77,4 +77,13 @@ class Game
       Display.lost(self.puzzle.puzzle_word)
     end
   end
+
+  def save_game
+    game_file = File.new("./game_file.json", "w")
+    game_file.puts JSON.dump({
+      correct_guess: self.correct_guess,
+      incorrect_guess: self.incorrect_guess
+    })
+    game_file.close
+  end
 end

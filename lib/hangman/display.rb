@@ -34,4 +34,9 @@ module Display
     puts "Game over!!"
     puts "Puzzle word: #{puzzle_word}"
   end
+
+  def self.save_game
+    puts "Game saved successfully!"
+    puts "Quitting game."
+  end
 end

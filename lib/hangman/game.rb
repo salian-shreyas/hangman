@@ -46,7 +46,7 @@ class Game
     self.puzzle.puzzle_word.include? guess
   end
 
-  def handle(guess)
+  def handle_guess(guess)
     if correct_guess?(guess)
       self.correct_guess << guess
     else
@@ -65,7 +65,7 @@ class Game
 
   def player_turn
     while playable?
-      handle self.player.new_guess
+      handle_input self.player.new_guess
       display_new_round
     end
   end
@@ -85,5 +85,15 @@ class Game
       incorrect_guess: self.incorrect_guess
     })
     game_file.close
+  end
+
+  def handle_input(input)
+    if input == "SAVE"
+      save_game
+      Display.save_game
+      exit
+    else
+      handle_guess(input)
+    end
   end
 end

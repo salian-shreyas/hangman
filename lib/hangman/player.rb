@@ -7,6 +7,7 @@ class Player
 
   def new_guess
     input = get_input
+    return input if input == "SAVE"
     self.guesses << validate_input(input)
     self.guesses.last
   end

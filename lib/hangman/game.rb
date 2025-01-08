@@ -17,13 +17,15 @@ class Game
   end
 
   def play
-    self.puzzle.new_puzzle
+    new_game
     display_new_round
     player_turn
     display_conclusion
   end
 
   private
+
+  attr_writer :correct_guess, :incorrect_guess
 
   def attempts
     @attempts - self.incorrect_guess.length
@@ -81,6 +83,7 @@ class Game
   def save_game
     game_file = File.new("./game_file.json", "w")
     game_file.puts JSON.dump({
+      puzzle_word: self.puzzle.puzzle_word,
       correct_guess: self.correct_guess,
       incorrect_guess: self.incorrect_guess
     })
@@ -95,5 +98,34 @@ class Game
     else
       handle_guess(input)
     end
+  end
+
+  def play_saved_game?
+    File.exist?("game_file.json") && player_agree?
+  end
+
+  def player_agree?
+    self.player.play_saved_game?
+  end
+
+  def new_game
+    if play_saved_game?
+      load_saved_game
+    else
+      self.puzzle.new_puzzle 
+    end
+  end
+
+  def update_game_data(game_data)
+    self.puzzle.puzzle_word = game_data['puzzle_word']
+    self.correct_guess = game_data['correct_guess']
+    self.incorrect_guess = game_data['incorrect_guess']
+    self.player.guesses = self.correct_guess << self.incorrect_guess
+  end
+
+  def load_saved_game
+    game_file = File.new("game_file.json", "r")
+    game_data = JSON.parse game_file.read.strip 
+    update_game_data game_data
   end
 end

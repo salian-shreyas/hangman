@@ -1,5 +1,5 @@
 class Puzzle
-  attr_reader :puzzle_word
+  attr_accessor :puzzle_word
 
   def initialize
     @puzzle_word = nil
@@ -21,6 +21,4 @@ class Puzzle
 
     file_lines.sample
   end
-
-  attr_writer :puzzle_word
 end

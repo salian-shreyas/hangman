@@ -1,5 +1,5 @@
 class Player
-  attr_reader :guesses
+  attr_accessor :guesses
 
   def initialize
     @guesses = []
@@ -10,6 +10,13 @@ class Player
     return input if input == "SAVE"
     self.guesses << validate_input(input)
     self.guesses.last
+  end
+
+  def play_saved_game?
+    puts "Do you wish to continue playing previously saved game?"
+    puts "Enter 'y' for yes: "
+    input = gets.chomp.downcase
+    input == 'y'
   end
 
   private
